@@ -6,6 +6,46 @@
     <title>Document</title>
 </head>
 <body>
-    <script src ="RPS.js"> </script>
+    <script src="RPS.js" defer></script>
+    <link rel="stylesheet" href="RPS.css"> 
+    
+    <header class="header">
+        <h1 class="title">ROCK PAPER SCISSORS</h1>
+      </header>
+    <div class= "header"> 
+        Choose Your Weapon 
+    </div>
+    <div class = "button" > 
+        <button class= "type-button" id="rock-btn" >✊</button>
+        <button class= "type-button" id="scissor-btn" >✌</button>
+        <button class= "type-button" id="paper-btn" >✋</button>
+
+    </div>
+
+    <div class ="choice"> 
+        <div class ="player">
+              <p>You</p> 
+              <p id = "player-choice">?</p>
+        </div>
+
+        <div class="computer"> 
+            <p>AI</p> 
+            <p id= "computer-choice">?</p>
+
+        </div>
+
+    </div>
+    
+    <div class="score">
+        <p> Score: </p>
+        <p id = human-score>Human: 0 </p>
+        <p id = computer-score>AI: 0 </p>
+
+    
+    </div>
+
+    <div class="rule">
+        Rule: First to 5 wins
+    </div>
 </body>
 </html>

@@ -1,92 +1,123 @@
+let playerScore = 0 ;
+let computerScore = 0 ; 
+let roundWinner =" " ;
 
+const rock_btn = document.getElementById("rock-btn");
+const scissor_btn = document.getElementById("scissor-btn");
+const paper_btn = document.getElementById("paper-btn");
+const player_choice = document.getElementById("player-choice");
+const computer_choice = document.getElementById("computer-choice");
+const player_score = document.getElementById("human-score");
+const computer_score = document.getElementById("computer-score");
+const round_display = document.getElementById("round_update");
 
-function getComputerChoice() {
-    let num = Math.floor(Math.random() * 3) + 1; 
-    return num;
+rock_btn.addEventListener('click', () => handleClick("Rock") );
+paper_btn.addEventListener('click', () => handleClick("Paper") );
+scissor_btn.addEventListener('click', () => handleClick("Scissor") );
+
+function handleClick(playerSelection) {
+    if (gameOver()) {
+        // display the final screen that include the start over option
+    }
+    else {
+      let computerSelection =  getComputerChoice() ;
+    playRound(playerSelection,computerSelection) ;
+    updateChoice(playerSelection, computerSelection) ;
+    updateScore();
+    
 }
 
-function getHumanChoice() {
-    let num;
-    while (true) {  
-        num = prompt("Choose 1, 2 or 3 to play \n 1. Scissor \n 2. Rock \n 3. Paper "); // always return a string 
-        if (num == 1 || num == 2 || num == 3) {
-            return num;  
-        }
-        console.log("Please select 1-3");
+    
+function updateScore() {
+    //Template literals (`) are a way to create strings that can include variables or expressions within them,
+    player_score.textContent = `Human: ${playerScore}` ;
+    computer_score.textContent = `Computer: ${computerScore}` ;
+
+    switch(roundWinner){
+        case "Computer":
+            round_display.textContent = "You Lost This Round";
+            break;
+        case "Player":
+            round_display.textContent = "You Won This Round";
+            break;
+        case "Tie":
+            round_display.textContent = "You Tie This Round";
+            break;
     }
+
+
+}
 }
 
-function playGame() {
-   
-    let humanScore = 0;
-    let computerScore = 0;
-    function getChoice() {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-    }
-
-    function playRound(humanSelection, computerSelection) {
-        humanSelection = parseInt(humanSelection); // must convert it to an int because prompt always return an int
-        if (humanSelection == computerSelection) {
-           let choice ;
-            switch (humanSelection) {
-                    case 1 :
-                     choice = "Scissor";
+function updateChoice (playerSelection, computerSelection) {
+    switch (computerSelection) {
+        case "Rock" :
+            computer_choice.textContent ="✊";
+            break;
+        case "Scissor" :
+             computer_choice.textContent ="✌";
+                break;
+        case "Paper" :
+            computer_choice.textContent ="✋";
                     break;
-                    case 2 :
-                        choice = "Rock";
-                       break; 
-                       case 3 :
-                       choice = "Paper";
-                      break;
+             }
+    switch (playerSelection) {
+                case "Rock" :
+                    player_choice.textContent ="✊";
+                    break;
+                case "Scissor" :
+                    player_choice.textContent ="✌";
+                        break;
+                case "Paper" :
+                   player_choice.textContent ="✋";
+                            break;
+                    
             }
-            console.log( "You Draw. You both pick " + choice );
-        }
-
-        else if (humanSelection ==1 ) { // You don't need to use parse int for this because JavaScript is a loosely-typed language, meaning it automatically converts values between types when necessary. When comparing a string (e.g., '2') with a number (e.g., 2), JavaScript will attempt to convert the string to a number in order to perform the comparison.
-           if (computerSelection == 3 ) {
-               humanScore +=1 ;
-   
-              console.log( "You Won. Computer Chose Paper. You Chose Scissor");
-           } 
-           
-           else {
-               computerScore +=1;
-               console.log(  "You Lost. Computer Choose Rock. You Chose Scissor" );
-           }
-        }
-        else if (humanSelection == 2 ) {
-           if (computerSelection == 3 ) {
-               computerScore +=1;
-   
-               console.log(  "You Lost. Computer Chose Paper. You Chose Rock" );
-           } 
-           else {
-               humanScore +=1 ;
-   
-               console.log(  "You Won. Computer Choose Scissor. You Chose Rock" );
-           }
-        }
-   
-       else if (humanSelection == 3 ) {
-           if (computerSelection == 1 ) {
-               computerScore +=1;
-   
-               console.log(  "You Lost. Computer Chose Scissor. You Chose Paper" );
-           } 
-           else {
-               humanScore +=1 ;
-   
-               console.log(  "You Won. Computer Choose Rock. You Choose Paper" );
-           }
-        }
-       }
-   
-       for (let i = 0; i < 5; i++) {
-       getChoice();
-      }
-      console.log("Human Score = " + humanScore +"\n" + "Computer Score = " + computerScore + "\n" + "Draw Score = " + (5-humanScore - computerScore));
 }
 
-playGame();
+
+
+function playRound(playerSelection,computerSelection) {
+    if (playerSelection == computerSelection) {
+        roundWinner = "Tie";
+    }
+    else if 
+    ( (playerSelection == "Rock" && computerSelection == "Paper") ||
+     (playerSelection == "Paper" && computerSelection == "Scissor") || (playerSelection == "Scissor" && computerSelection == "Rock")
+    )
+    {
+        roundWinner = "Computer" ;
+        computerScore++;
+    }
+    else if 
+    ( (playerSelection == "Rock" && computerSelection == "Scissor") ||
+     (playerSelection == "Paper" && computerSelection == "Rock") || (playerSelection == "Scissor" && computerSelection == "Paper")
+    )
+    {
+        roundWinner = "Player" ;
+        playerScore++;
+    }
+
+}
+
+function getComputerChoice(){
+    let num = Math.floor(Math.random() * 3) + 1; 
+   switch (num) {
+    case 1 :
+        return "Rock" // return immidiately exit the function. No fall through
+    case 2 :
+        return "Scissor"
+    case 3 :
+        return "Paper"
+   }
+
+}
+
+function gameOver() {
+    if (playerScore == 5|| computerScore == 5) {
+        return true; 
+    }
+    else {
+        return false ;
+    }
+}
