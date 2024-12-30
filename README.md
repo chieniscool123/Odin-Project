@@ -1,5 +1,5 @@
 # DEV LOG 
-
+https://chieniscool123.github.io/Odin-Project/Rock_Paper_Scissor/index.html
 ## Project#1 : Rock, Paper, Scissor (11-29-24 to 12-1-24)
 ### What I learned: 
 #### 1. JavaScript if/else, switch case, prompt, mathfloor, math.random
