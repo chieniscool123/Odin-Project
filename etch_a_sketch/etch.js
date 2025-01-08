@@ -111,6 +111,7 @@ function hw() {
 }
 
 container.appendChild(tools_box);
+
 container.appendChild(slider);
 
 hw();
