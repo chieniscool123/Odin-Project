@@ -9,25 +9,24 @@ container.style.height = "600px";
 container.style.padding = "0px 30px 220px 30px";
 container.style.backgroundColor = "Red";
 
+// Create the logo and append to the logos_container once
+const logo = document.createElement('img');
+logo.src = "./images/logo.webp";
+logo.height = 120;
+logo.width = 180;
+logo.style.padding = "10px 0px 25px 0px";
+logos_container[0].style.width = "500px";
+logos_container[0].style.height = "100px";
+logos_container[0].style.display = "flex";
+logos_container[0].style.justifyContent = "center";
+logos_container[0].appendChild(logo);
+
+// Create the tools box and buttons once
 const tools_box = document.createElement("div");
 tools_box.style.display = "flex";
 tools_box.style.width = "500px";
 tools_box.style.padding = "10px 10px";
 tools_box.style.justifyContent = "space-evenly";
-
-
-const logo = document.createElement('img')
-
-logo.src = "./images/logo.webp";  // Set the source of the image
-logo.height = 120;  // Set the height of the image
-logo.width = 180;   // Set the width of the image
-logo.style.padding = "10px 0px 25px 0px"
-logos_container[0].style.width = "500px"
-logos_container[0].style.height = "100px"
-logos_container[0].style.display = "flex"
-logos_container[0].style.justifyContent = "center"
-logos_container[0].appendChild(logo)
-
 
 const eraser_btn = document.createElement("button");
 const pencil_btn = document.createElement("button");
@@ -36,6 +35,7 @@ const reset_btn = document.createElement("button");
 const slider = document.createElement("div");
 const size_slide = document.createElement('input');
 const size_value = document.createElement('span');
+
 eraser_btn.classList.add("tools");
 pencil_btn.classList.add("tools");
 reset_btn.classList.add("tools");
@@ -51,6 +51,7 @@ tools_box.appendChild(eraser_btn);
 tools_box.appendChild(pencil_btn);
 tools_box.appendChild(reset_btn);
 
+// Create the slider once
 slider.style.display = "flex";
 slider.style.flexDirection = "column";
 slider.style.alignItems = "center";
@@ -62,21 +63,28 @@ size_value.textContent = "16 x 16";
 slider.appendChild(size_slide);
 slider.appendChild(size_value);
 
+
+
 let debounceTimeout;
 
 // Debounce function to create grid only after the user stops sliding
 size_slide.addEventListener('input', () => {
   size_value.textContent = `${size_slide.value} x ${size_slide.value}`;
-  
+
   // Clear the previous timeout if the user is still sliding
   clearTimeout(debounceTimeout);
-  
+
   // Set a new timeout to wait until the user stops sliding
   debounceTimeout = setTimeout(() => {
-    container.innerHTML = ""; // Clear the previous grid
-    hw(); 
-  }, 200); 
+    clearGrid();  // Clear only the grid, not the tools or logo
+    hw();
+  }, 200);
 });
+
+function clearGrid() {
+  const grids = document.querySelectorAll('.grids');
+  grids.forEach(grid => grid.remove());  // Remove only grid cells, not logo/tools
+}
 
 function hw() {
   for (let i = 0; i < size_slide.value * size_slide.value; i++) {
@@ -97,17 +105,15 @@ function hw() {
       grid.style.backgroundColor = "white";
     }));
 
-  
     reset_btn.addEventListener('click', () => {
       const grids = document.querySelectorAll('.grids');
       grids.forEach(grid => {
         grid.style.backgroundColor = "white"; 
       });
     });
-
-    container.appendChild(tools_box);
-    container.appendChild(slider);
   }
+  container.appendChild(tools_box);
+container.appendChild(slider);
 }
 
 container.appendChild(tools_box);
