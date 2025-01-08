@@ -1,0 +1,53 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body{
+
+    background-color: beige;
+     
+}
+
+
+#display {
+    display: flex;
+    flex-direction: column;
+    background-color: green;
+    justify-content: center;
+    align-items: center;
+  
+}
+
+.tools {
+    background-color: white; 
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+
+    border: hidden;
+  }
+
+ 
+.picker {
+  height: 44px;
+  width : 80px;
+  padding: 10px 30px;
+  margin: 10px;
+  border: hidden;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 8px;
+}
