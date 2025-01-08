@@ -10,7 +10,7 @@
 #### 5.  let num = Math.floor(Math.random() * 3) + 1; will return a random number from 1 - 3
 
 #Project#2 : Etch-a-Sketch (2024 - 1/8/2025)
-### Link: 
+### Link: https://chieniscool123.github.io/Odin-Project/etch_a_sketch/index.html
 ### What I learned from challenging myself to use mostly JS 
 ### 1. DOM Manipulation
 ### 2. Building an Interactive User Interface
