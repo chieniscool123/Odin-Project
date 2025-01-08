@@ -1,96 +1,116 @@
+const container = document.querySelector("#container");
+const logos_container = document.querySelectorAll('.logos');
+container.style.border = "1px bold solid red";
+container.style.display = "flex";
+container.style.flexWrap = "wrap";
+container.style.justifyContent = "center";
+container.style.width = "500px";
+container.style.height = "600px";
+container.style.padding = "0px 30px 220px 30px";
+container.style.backgroundColor = "Red";
+
+const tools_box = document.createElement("div");
+tools_box.style.display = "flex";
+tools_box.style.width = "500px";
+tools_box.style.padding = "10px 10px";
+tools_box.style.justifyContent = "space-evenly";
 
 
-let size =  16// parseInt(prompt("Enter the size of your sketch book (Max = 100x100): "));
+const logo = document.createElement('img')
+
+logo.src = "./images/logo.webp";  // Set the source of the image
+logo.height = 120;  // Set the height of the image
+logo.width = 180;   // Set the width of the image
+logo.style.padding = "10px 0px 25px 0px"
+logos_container[0].style.width = "500px"
+logos_container[0].style.height = "100px"
+logos_container[0].style.display = "flex"
+logos_container[0].style.justifyContent = "center"
+logos_container[0].appendChild(logo)
 
 
-const container = document.querySelector("#container")
-
-
-container.style.border = "1px bold solid red"
-container.style.display = "flex"
-container.style.flexWrap = "wrap"
-container.style.justifyContent = "center"
-
-container.style.width = "500px"
-container.style.height = "600px"
-container.style.padding = "120px 30px"
-container.style.backgroundColor = "Red"
-
-const tools_box = document.createElement("div")
-tools_box.style.display = "flex"
-tools_box.style.width = "500px"
-tools_box.style.padding = "10px 10px"
-tools_box.style.justifyContent = "space-evenly"
-
-
-
-const eraser_btn = document.createElement("button")
-const pencil_btn = document.createElement("button")
-const colorPicker = document.createElement('input')
-const slider = document.createElement("div")
-const size_slide = document.createElement('input')
-const size_value = document.createElement('span')
+const eraser_btn = document.createElement("button");
+const pencil_btn = document.createElement("button");
+const colorPicker = document.createElement('input');
+const reset_btn = document.createElement("button");
+const slider = document.createElement("div");
+const size_slide = document.createElement('input');
+const size_value = document.createElement('span');
 eraser_btn.classList.add("tools");
 pencil_btn.classList.add("tools");
+reset_btn.classList.add("tools");
 colorPicker.classList.add("picker");
-
-
-
-slider.style.display = "flex"
-slider.style.flexDirection = "column"
-slider.style.alignItems = "center"
-
-slider.appendChild(size_slide)
-slider.appendChild(size_value)
 
 eraser_btn.innerHTML = '<img src="./images/eraser_black.png" height="20px" width="20px"/>';
 pencil_btn.innerHTML = '<img src="./images/pencil_black.png" height="20px" width="20px"/>';
+reset_btn.innerHTML = '<img src="./images/reset.png" height="20px" width="20px"/>';
 colorPicker.type = 'color';
 colorPicker.value = '#3a3a3a';
-size_slide.type = "range"
-size_slide.value = 16;  
-size_slide.min = 1;     
-size_slide.max = 100;    
-size_value.textContent = "16 x 16"
+tools_box.appendChild(colorPicker);
+tools_box.appendChild(eraser_btn);
+tools_box.appendChild(pencil_btn);
+tools_box.appendChild(reset_btn);
+
+slider.style.display = "flex";
+slider.style.flexDirection = "column";
+slider.style.alignItems = "center";
+size_slide.type = "range";
+size_slide.value = 16;
+size_slide.min = 1;
+size_slide.max = 32;
+size_value.textContent = "16 x 16";
+slider.appendChild(size_slide);
+slider.appendChild(size_value);
+
+let debounceTimeout;
+
+// Debounce function to create grid only after the user stops sliding
 size_slide.addEventListener('input', () => {
   size_value.textContent = `${size_slide.value} x ${size_slide.value}`;
-  container.innerHTML = ""
-  hw()
+  
+  // Clear the previous timeout if the user is still sliding
+  clearTimeout(debounceTimeout);
+  
+  // Set a new timeout to wait until the user stops sliding
+  debounceTimeout = setTimeout(() => {
+    container.innerHTML = ""; // Clear the previous grid
+    hw(); 
+  }, 200); 
 });
 
-tools_box.appendChild(colorPicker)
-tools_box.appendChild(eraser_btn)
-tools_box.appendChild(pencil_btn)
+function hw() {
+  for (let i = 0; i < size_slide.value * size_slide.value; i++) {
+    let grid = document.createElement("div");
+    grid.classList.add("grids");
 
-function hw (){
-for(let i = 0 ; i < size_slide.value*size_slide.value ; i++ ) {
+    grid.style.border = "1px solid Red";
+    grid.style.width = `calc(100% / ${size_slide.value})`;
+    grid.style.height = `calc(100% / ${size_slide.value})`;
+    grid.style.backgroundColor = "white";
+    container.appendChild(grid);
+
+    pencil_btn.addEventListener('click', () => grid.addEventListener('mouseover', () => {
+      grid.style.backgroundColor = colorPicker.value;
+    }));
+
+    eraser_btn.addEventListener('click', () => grid.addEventListener('mouseover', () => {
+      grid.style.backgroundColor = "white";
+    }));
+
   
-  let grid=  document.createElement("div")
-  grid.style.border = "1px solid Red"
-   grid.style.width = `calc(100% / ${size})`
-    grid.style.height = `calc(100% / ${size})`
-    grid.style.backgroundColor = "white"
-    
-    container.appendChild(grid)
+    reset_btn.addEventListener('click', () => {
+      const grids = document.querySelectorAll('.grids');
+      grids.forEach(grid => {
+        grid.style.backgroundColor = "white"; 
+      });
+    });
 
-    pencil_btn.addEventListener('click', () =>  grid.addEventListener('mouseover', () => {
-      grid.style.backgroundColor = colorPicker.value ;
-    }))
-
-    eraser_btn.addEventListener('click', () =>  grid.addEventListener('mouseover', () => {
-      grid.style.backgroundColor = "yellow" ;
-    }))
-    
-    container.appendChild(tools_box)
-    container.appendChild(slider)
-    
+    container.appendChild(tools_box);
+    container.appendChild(slider);
+  }
 }
 
-}
+container.appendChild(tools_box);
+container.appendChild(slider);
 
-hw()
-container.appendChild(tools_box)
-container.appendChild(slider)
-
-
-
+hw();
