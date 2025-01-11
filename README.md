@@ -9,7 +9,7 @@
 #### 4. math.random is a static method returns a floating-point, pseudo-random number that's greater than or equal to 0 and less than 1. Never reach 1 is important
 #### 5.  let num = Math.floor(Math.random() * 3) + 1; will return a random number from 1 - 3
 
-#Project#2 : Etch-a-Sketch (2024 - 1/8/2025)
+# Project#2 : Etch-a-Sketch (2024 - 1/8/2025)
 ### Link: https://chieniscool123.github.io/Odin-Project/etch_a_sketch/index.html
 ### What I learned from challenging myself to use mostly JS 
 #### 1. DOM Manipulation
@@ -18,7 +18,7 @@
 #### 4. Using External Libraries and Assets
 #### 5. Understanding Flexbox and Layout Management
 
-#Project#2 : Basic Calculator (1/9/2025 - 1/10/2025)
+# Project#3 : Basic Calculator (1/9/2025 - 1/10/2025)
 ### Link: https://chieniscool123.github.io/Odin-Project/calculator/index.html
 ### What I learned:
 #### 1. How to manipulate my flex box using selector and opposite 
