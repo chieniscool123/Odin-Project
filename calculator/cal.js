@@ -7,7 +7,10 @@ const screen = document.getElementById("screen");
 
 
 document.getElementById("=").addEventListener("click", () => {
-    screen.textContent = (operate(str));
+    let display = (operate(str));
+    screen.textContent = display;
+    str = "";
+    str += display;
 
 });
 
