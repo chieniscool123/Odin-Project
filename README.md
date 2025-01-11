@@ -12,9 +12,15 @@
 #Project#2 : Etch-a-Sketch (2024 - 1/8/2025)
 ### Link: https://chieniscool123.github.io/Odin-Project/etch_a_sketch/index.html
 ### What I learned from challenging myself to use mostly JS 
-### 1. DOM Manipulation
-### 2. Building an Interactive User Interface
-### 3. CSS & JavaScript Integration
-### 4. Using External Libraries and Assets
-### 5. Understanding Flexbox and Layout Management
+#### 1. DOM Manipulation
+#### 2. Building an Interactive User Interface
+#### 3. CSS & JavaScript Integration
+#### 4. Using External Libraries and Assets
+#### 5. Understanding Flexbox and Layout Management
 
+#Project#2 : Basic Calculator (1/9/2025 - 1/10/2025)
+### Link: https://chieniscool123.github.io/Odin-Project/calculator/index.html
+### What I learned:
+#### 1. How to manipulate my flex box using selector and opposite 
+#### 2. Js functions
+#### 3. How to plan large scale problem
