@@ -16,9 +16,9 @@ body {
 .body {
     display: flex;
     flex-direction: column;
-    height: 600px;
+    height: 620px;
     width: 500px;
-    background-color: yellow;
+    background-color: black;
     align-items: center;
 
 }
@@ -27,48 +27,51 @@ body {
     display: flex;
     height: 150px;
     width: 450px;
-    background-color: green;
+    background-color: white;
     margin: 20px 0px;
+    font-size: 50px;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 
 
 #row_0 {
     display: flex;
-    height: 100px;
+    height: 130px;
     width: 450px;
-    background-color: green;
-    margin: 10px 0px;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 50px;
+
 
 }
 
-#row_1 {
-    display: flex;
-    height: 50px;
-    width: 450px;
-    background-color: green;
-    margin: 10px 0px;
+
+.button {
+    background-color: grey;
 }
 
-#row_2 {
+#row_0 .button {
+    width: 210px;
     display: flex;
-    height: 50px;
-    width: 450px;
-    background-color: green;
-    margin: 10px 0px;
+    justify-content: center;
+
 }
 
-#row_3 {
+
+.row {
     display: flex;
     height: 50px;
     width: 450px;
-    background-color: green;
     margin: 10px 0px;
+    justify-content: space-evenly;
 }
 
-#row_4 {
+
+.row .button {
     display: flex;
-    height: 50px;
-    width: 450px;
-    background-color: green;
-    margin: 10px 0px;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
 }
